@@ -6,33 +6,35 @@
 uwosh.oshkoshscholars
 ==============================================================================
 
-Tell me what your product does
+Contains Dexterity types, workflows, policy, and configuration for the Oshkosh Scholars project.
 
 Features
 --------
 
-- Can be bullet points
+- Dexterity content type for student submissions to the Oshkosh Scholar journal
+
+- Workflow for accepting submissions, rating them, editing them, and accepting/publishing them.
 
 
 Examples
 --------
 
 This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+- http://plonedev.uwosh.edu/oshkoshscholar
 
 
 Documentation
 -------------
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+Full documentation for end users can be found in the "docs" folder, and is also available online at https://github.com/OshkoshScholars/uwosh.oshkoshscholars/tree/master/docs
 
 
 Translations
 ------------
 
-This product has been translated into
+This product has not been translated.
 
-- Klingon (thanks, K'Plai)
+
 
 
 Installation
@@ -56,14 +58,13 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/uwosh.oshkoshscholars/issues
 - Source Code: https://github.com/collective/uwosh.oshkoshscholars
-- Documentation: https://docs.plone.org/foo/bar
+- Documentation: https://github.com/OshkoshScholars/uwosh.oshkoshscholars/tree/master/docs
 
 
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+If you are having issues, please let us know at gutow@uwosh.edu or tkn@alumni.uwaterloo.ca or find us in IRC at irc.freenode.net in the #plone chat room (tkimnguyen). 
 
 
 License
