@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+      name="uwosh.oshkoshscholars"
+      interface="uwosh.oshkoshscholars.interfaces.IOshkoshScholarsLayer"
+      />
+</layers>

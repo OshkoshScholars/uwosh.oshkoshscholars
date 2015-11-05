@@ -1,0 +1,5 @@
+====================
+uwosh.oshkoshscholars
+====================
+
+User documentation
