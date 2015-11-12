@@ -22,23 +22,10 @@ class StudentSubmissionIntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
-    def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='StudentSubmission')
-        schema = fti.lookupSchema()
-        self.assertEqual(IStudentSubmission, schema)
-
     def test_fti(self):
         fti = queryUtility(IDexterityFTI, name='StudentSubmission')
         self.assertTrue(fti)
 
-    def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='StudentSubmission')
-        factory = fti.factory
-        obj = createObject(factory)
-        self.assertTrue(IStudentSubmission.providedBy(obj))
-
     def test_adding(self):
         self.portal.invokeFactory('StudentSubmission', 'StudentSubmission')
-        self.assertTrue(
-            IStudentSubmission.providedBy(self.portal['StudentSubmission'])
-        )
+        self.assertTrue('StudentSubmission' in [i for i, j in self.portal.items() ])
