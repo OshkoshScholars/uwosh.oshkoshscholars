@@ -126,4 +126,47 @@ jQuery(function($) {
 		return false;
 	});
 
+	// enforce minimal email values
+
+	$('#form-widgets-student_email').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-student_email2').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-student_email3').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-student_email4').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-student_email5').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-faculty_email').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
+
+	$('#form-widgets-faculty_email2').on('blur', function() {
+		val = $(this).val();
+		res = val.match(/.@.+\..+/);
+		if (res == null || res.length == 0) { alert('invalid email address: ' + val); }
+	    });
 });
