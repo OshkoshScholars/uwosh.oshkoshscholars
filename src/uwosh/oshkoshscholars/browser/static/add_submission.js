@@ -118,8 +118,12 @@ jQuery(function($) {
 	$('#formfield-form-widgets-not_been_submitted,#formfield-form-widgets-does_not_contain,#formfield-form-widgets-obtained_irb_or_iacuc,#formfield-form-widgets-have_read_guidelines,#formfield-form-widgets-will_attend,#formfield-form-widgets-will_make_effort').wrapAll(
 		"<fieldset style='background: #eeeeee; border-style: solid;' id='author-agreement'>"
 	);
-	$('fieldset#author-agreement').append("<legend for='author-agreement'>Author Agreement</legend><div>The primary author certifies that:</div>");
-	
+	$('fieldset#author-agreement').prepend("<legend for='author-agreement'>Author Agreement</legend><h3>The primary author certifies that:</h3><br>");
 
+	// enforce only yes answers on author agreement questions
+	$('#form-widgets-not_been_submitted-1, #form-widgets-does_not_contain-1, #form-widgets-obtained_irb_or_iacuc-1, #form-widgets-have_read_guidelines-1, #form-widgets-will_attend-1, #form-widgets-will_make_effort-1').click(function() {
+		alert('You must answer \'yes\' to all author agreement questions');
+		return false;
+	});
 
 });
