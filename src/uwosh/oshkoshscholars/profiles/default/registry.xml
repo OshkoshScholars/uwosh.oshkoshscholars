@@ -1,0 +1,44 @@
+<!-- Operation Definitions -->
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone">
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.SubmissionReviewer">
+        <value key="title" i18n:translate="">Submission Reviewer</value>
+        <value key="description" i18n:translate="">The person reviewing a Student Submission</value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.is</element>
+            <element>plone.app.querystring.operation.string.currentUser</element>
+        </value>
+       <value key="group" i18n:translate="">OshkoshScholar</value>
+    </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.faculty_id">
+        <value key="title" i18n:translate="">Faculty Advisor 1</value>
+        <value key="description" i18n:translate="">The primary faculty advisor for a Student Submission</value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.is</element>
+            <element>plone.app.querystring.operation.string.currentUser</element>
+        </value>
+       <value key="group" i18n:translate="">OshkoshScholar</value>
+    </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.faculty_id2">
+        <value key="title" i18n:translate="">Faculty Advisor 2</value>
+        <value key="description" i18n:translate="">The second faculty advisor for a Student Submission</value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.is</element>
+            <element>plone.app.querystring.operation.string.currentUser</element>
+        </value>
+       <value key="group" i18n:translate="">OshkoshScholar</value>
+    </records>
+
+</registry>

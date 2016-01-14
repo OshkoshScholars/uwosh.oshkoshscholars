@@ -1,31 +1,33 @@
 <?xml version="1.0"?>
-<object name="StudentSubmission" meta_type="Dexterity FTI" i18n:domain="uwosh.oshkoshscholars"
+<object name="StudentSubmission" meta_type="Dexterity FTI"
+   i18n:domain="uwosh.oshkoshscholars"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">Student Submission</property>
-  <property name="description"
-    i18n:translate=""></property>
-  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-  <property name="factory">StudentSubmission</property>
-  <property name="add_view_expr">string:${folder_url}/++add++StudentSubmission</property>
-  <property name="link_target"></property>
-  <property name="immediate_view">view</property>
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>
-  <property name="allowed_content_types"/>
-  <property name="allow_discussion">False</property>
-  <property name="default_view">view</property>
-  <property name="view_methods">
-    <element value="view"/>
+ <property name="title" i18n:translate="">Student Submission</property>
+ <property name="description" i18n:translate=""></property>
+ <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+ <property name="factory">StudentSubmission</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++StudentSubmission</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">submissionview</property>
+ <property name="view_methods">
+  <element value="view"/>
+  <element value="submissionview"/>
   </property>
-  <property name="default_view_fallback">False</property>
-  <property name="add_permission">cmf.AddPortalContent</property>
-  <property name="klass">plone.dexterity.content.Container</property>
-  <property name="behaviors">
-    <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-    <element value="plone.app.content.interfaces.INameFromTitle"/>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
+ <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
   </property>
-  <property name="schema"></property>
-  <property name="model_source">&lt;?xml version='1.0' encoding='utf8'?&gt;
+ <property name="schema"></property>
+ <property name="model_source">&lt;?xml version='1.0' encoding='utf8'?&gt;
   &lt;model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
       &lt;field name="submission_title" type="zope.schema.TextLine"&gt;
@@ -173,6 +175,11 @@
         &lt;description/&gt;
         &lt;title&gt;Faculty Email&lt;/title&gt;
       &lt;/field&gt;
+      &lt;field name="faculty_id" type="zope.schema.TextLine"&gt;
+	&lt;description&gt;will be autopopulated&lt;/description&gt;
+	&lt;required&gt;False&lt;/required&gt;
+	&lt;title&gt;Faculty ID&lt;/title&gt;
+      &lt;/field&gt;
       &lt;field name="faculty_phone" type="zope.schema.TextLine"&gt;
         &lt;description/&gt;
         &lt;title&gt;Faculty Phone&lt;/title&gt;
@@ -185,6 +192,11 @@
         &lt;description/&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Faculty Name 2&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="faculty_id2" type="zope.schema.TextLine"&gt;
+	&lt;description&gt;will be autopopulated&lt;/description&gt;
+	&lt;required&gt;False&lt;/required&gt;
+	&lt;title&gt;Faculty ID 2&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="faculty_email2" type="zope.schema.TextLine"&gt;
         &lt;description/&gt;
@@ -205,53 +217,60 @@
         &lt;description/&gt;
         &lt;title&gt;The manuscript has not been submitted to another journal that restricts previous publication.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
-  
       &lt;/field&gt;
       &lt;field name="does_not_contain" type="zope.schema.Bool"&gt;
         &lt;description/&gt;
         &lt;title&gt;The manuscript does not contain copyrighted material.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
-  
       &lt;/field&gt;
       &lt;field name="obtained_irb_or_iacuc" type="zope.schema.Bool"&gt;
         &lt;description/&gt;
         &lt;title&gt;If the study involved human or animal subjects, the author obtained permission from the IRB or IACUC.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
-  
       &lt;/field&gt;
       &lt;field name="have_read_guidelines" type="zope.schema.Bool"&gt;
         &lt;description/&gt;
         &lt;title&gt;I have read the Oshkosh Scholar submission guidelines and style sheet and have made every effort to follow these guidelines.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
-  
       &lt;/field&gt;
       &lt;field name="will_attend" type="zope.schema.Bool"&gt;
         &lt;description/&gt;
         &lt;title&gt;I will attend a review meeting with the Oshkosh Scholar editorial staff and my faculty mentor.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
-  
       &lt;/field&gt;
       &lt;field name="will_make_effort" type="zope.schema.Bool"&gt;
         &lt;description/&gt;
         &lt;title&gt;I will make every reasonable effort to conform to the revision requests of the Oshkosh Scholar editorial staff, and failure to do so may result in failure to have my manuscript published.&lt;/title&gt;
         &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
       &lt;/field&gt;
+      &lt;fieldset name="office_use_only" label="Office Use Only"&gt;
+      &lt;field name="reviewer" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Reviewer&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="review_deadline" type="zope.schema.Date"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Review Deadline&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;/fieldset&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>
-  <property name="model_file"></property>
-  <property name="schema_policy">dexterity</property>
-  <alias from="(Default)" to="(dynamic view)"/>
-  <alias from="edit" to="@@edit"/>
-  <alias from="sharing" to="@@sharing"/>
-  <alias from="view" to="(selected layout)"/>
-  <action title="View" action_id="view" category="object" condition_expr=""
+ <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
     description="" icon_expr="" link_target="" url_expr="string:${object_url}"
     visible="True">
-    <permission value="View"/>
+  <permission value="View"/>
   </action>
-  <action title="Edit" action_id="edit" category="object" condition_expr=""
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
     description="" icon_expr="" link_target=""
     url_expr="string:${object_url}/edit" visible="True">
-    <permission value="Modify portal content"/>
+  <permission value="Modify portal content"/>
   </action>
 </object>

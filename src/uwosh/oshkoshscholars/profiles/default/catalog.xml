@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="StudentSubmissionReviewer" meta_type="FieldIndex">
+  <indexed_attr value="getStudentSubmissionReviewer"/>
+ </index>
+ <index name="FacultyAdvisor1" meta_type="FieldIndex">
+  <indexed_attr value="faculty_id"/>
+ </index>
+ <index name="FacultyAdvisor2" meta_type="FieldIndex">
+  <indexed_attr value="faculty_id2"/>
+ </index>
+ <column value="faculty_id"/>
+ <column value="faculty_id2"/>
+ <column value="reviewer"/>
+</object>

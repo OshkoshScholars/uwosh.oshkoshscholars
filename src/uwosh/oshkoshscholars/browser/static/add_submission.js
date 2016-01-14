@@ -89,12 +89,16 @@ jQuery(function($) {
 
     // wrap fields for faculty advisors
 
-    $('#formfield-form-widgets-faculty_name,#formfield-form-widgets-faculty_email,#formfield-form-widgets-faculty_phone,#formfield-form-widgets-faculty_department').wrapAll(
+    $('#formfield-form-widgets-faculty_name,#formfield-form-widgets-faculty_email,#formfield-form-widgets-faculty_id,#formfield-form-widgets-faculty_phone,#formfield-form-widgets-faculty_department').wrapAll(
 		"<fieldset style='background: #eeeeee; border-style: solid;' id='faculty1'></fieldset>"
 	);
 	$('fieldset#faculty1').append("<legend for='faculty1'>Faculty Advisor</legend>");
 
-    $('#formfield-form-widgets-faculty_name2,#formfield-form-widgets-faculty_email2,#formfield-form-widgets-faculty_phone2,#formfield-form-widgets-faculty_department2').wrapAll(
+    // hide fields that will be autopopulated
+    $('#formfield-form-widgets-faculty_id').hide();
+    $('#formfield-form-widgets-faculty_id2').hide();
+
+    $('#formfield-form-widgets-faculty_name2,#formfield-form-widgets-faculty_email2,#formfield-form-widgets-faculty_id2,#formfield-form-widgets-faculty_phone2,#formfield-form-widgets-faculty_department2').wrapAll(
 		"<fieldset style='background: #eeeeee; border-style: solid;' id='faculty2'></fieldset>"
 	);
 

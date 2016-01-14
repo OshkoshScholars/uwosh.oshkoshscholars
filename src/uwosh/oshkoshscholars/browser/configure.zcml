@@ -17,4 +17,12 @@
       directory="static"
       />
 
+  <browser:page
+      name="submissionview"
+      for="*"
+      class=".views.StudentView"
+      template="templates/studentsubmissionview.pt"
+      permission="zope2.View"
+      />
+
 </configure>
