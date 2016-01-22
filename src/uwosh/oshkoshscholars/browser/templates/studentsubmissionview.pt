@@ -1,0 +1,251 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="example.conference">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+	tal:define="workflow_state python: context.restrictedTraverse('@@plone_context_state').workflow_state();
+		    member python: context.restrictedTraverse('@@plone_portal_state').member();
+		    reviewer_id context/reviewer;
+		    is_submissionreviewer python: member.id == reviewer_id">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:content="context/description" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+	<div id="submissionnotices" style="border: 1px solid; clear: left;">
+	  <div id="workflow_state">
+	    Workflow state: 
+	    <div tal:content="workflow_state">
+	      [state]
+	    </div>
+	  </div>
+	  <div id="user_role">
+	    Viewer is reviewer? 
+	    <div tal:content="is_submissionreviewer">
+	      [is_submissionreviewer]
+	    </div>
+	  </div>
+	</div>
+
+	<!-- student submitters -->
+
+	<div id="studentbiocontainer_hidden" tal:condition="is_submissionreviewer">
+	  <em>Student Author info is hidden for your role</em>
+	</div>
+
+	<div id="studentbiocontainer" tal:condition="not: is_submissionreviewer">
+
+	  <h2>Student Author(s)</h2>
+
+	  <div class="studentbio" id="studentbio1" style="border: 1px solid;">
+
+	    <div tal:content="structure context/student_name">
+	      [studentname]
+	    </div>
+
+	    <div tal:content="structure context/student_email">
+	      [studentemail]
+	    </div>
+
+	    <div tal:content="structure context/student_major">
+	      [studentmajor]
+	    </div>
+
+	    <div tal:content="structure context/student_phone">
+	      [studentphone]
+	    </div>
+
+	    <div tal:content="structure context/student_bio/output">
+	      [studentbio]
+	    </div>
+
+	  </div>
+
+	  <div tal:condition="context/student_name2 | nothing"
+	       class="studentbio" id="studentbio2" style="border: 1px solid;">
+
+	    <div tal:content="structure context/student_name2 | nothing">
+	      [studentname]
+	    </div>
+
+	    <div tal:content="structure context/student_email2 | nothing">
+	      [studentemail]
+	    </div>
+
+	    <div tal:content="structure context/student_major2 | nothing">
+	      [studentmajor]
+	    </div>
+
+	    <div tal:content="structure context/student_phone2 | nothing">
+	      [studentphone]
+	    </div>
+
+	    <div tal:content="structure context/student_bio2/output | nothing">
+	      [studentbio]
+	    </div>
+
+	  </div>
+
+	  <div tal:condition="context/student_name3 | nothing"
+	       class="studentbio" id="studentbio3"  style="border: 1px solid;">
+
+	    <div tal:content="structure context/student_name3 | nothing">
+	      [studentname]
+	    </div>
+
+	    <div tal:content="structure context/student_email3 | nothing">
+	      [studentemail]
+	    </div>
+
+	    <div tal:content="structure context/student_major3 | nothing">
+	      [studentmajor]
+	    </div>
+
+	    <div tal:content="structure context/student_phone3 | nothing">
+	      [studentphone]
+	    </div>
+
+	    <div tal:content="structure context/student_bio3/output | nothing">
+	      [studentbio]
+	    </div>
+
+	  </div>
+
+	  <div tal:condition="context/student_name4 | nothing"
+	       class="studentbio" id="studentbio4"  style="border: 1px solid;">
+
+	    <div tal:content="structure context/student_name4 | nothing">
+	      [studentname]
+	    </div>
+
+	    <div tal:content="structure context/student_email4 | nothing">
+	      [studentemail]
+	    </div>
+
+	    <div tal:content="structure context/student_major4 | nothing">
+	      [studentmajor]
+	    </div>
+
+	    <div tal:content="structure context/student_phone4 | nothing">
+	      [studentphone]
+	    </div>
+
+	    <div tal:content="structure context/student_bio4/output | nothing">
+	      [studentbio]
+	    </div>
+
+	  </div>
+
+	  <div tal:condition="context/student_name5 | nothing"
+	       class="studentbio" id="studentbio5" style="border: 1px solid;">
+
+	    <div tal:content="structure context/student_name5 | nothing">
+	      [studentname]
+	    </div>
+
+	    <div tal:content="structure context/student_email5 | nothing">
+	      [studentemail]
+	    </div>
+
+	    <div tal:content="structure context/student_major5 | nothing">
+	      [studentmajor]
+	    </div>
+
+	    <div tal:content="structure context/student_phone5 | nothing">
+	      [studentphone]
+	    </div>
+
+	    <div tal:content="structure context/student_bio5/output | nothing">
+	      [studentbio]
+	    </div>
+
+	  </div>
+
+	</div>
+
+	<!-- faculty advisors -->
+
+	<div id="facultybiocontainer_hidden" tal:condition="is_submissionreviewer">
+	  <em>Faculty Advisor info is hidden for your role</em>
+	</div>
+
+	<div id="facultybiocontainer" style="clear: left;" tal:condition="not: is_submissionreviewer">
+
+	  <h2>Faculty Advisors</h2>
+
+	  <div class="facultybio" id="facultybio1"  style="border: 1px solid;">
+
+	    <div tal:content="structure context/faculty_name | nothing">
+	      [facultyname]
+	    </div>
+
+	    <div tal:content="structure context/faculty_email | nothing">
+	      [facultyemail]
+	    </div>
+
+	    <div tal:content="structure context/faculty_phone | nothing">
+	      [facultyphone]
+	    </div>
+
+	    <div tal:content="structure context/faculty_department | nothing">
+	      [facultymajor]
+	    </div>
+
+	  </div>
+
+	  <div tal:condition="context/faculty_name2 | nothing"
+	       class="facultybio" id="facultybio2"  style="border: 1px solid;">
+
+	    <div tal:content="structure context/faculty_name2 | nothing">
+	      [facultyname]
+	    </div>
+
+	    <div tal:content="structure context/faculty_email2 | nothing">
+	      [facultyemail]
+	    </div>
+
+	    <div tal:content="structure context/faculty_phone2 | nothing">
+	      [facultyphone]
+	    </div>
+
+	    <div tal:content="structure context/faculty_department2 | nothing">
+	      [facultymajor]
+	    </div>
+
+	  </div>
+
+	</div>
+
+	<!-- the actual submission -->
+
+	<div id="submissioninfo" style="clear: left;">
+
+	  <h2>Abstract and File</h2>
+	
+	  <div tal:content="structure context/abstract/output">
+	    [abstract]
+	  </div>
+
+	  <a tal:attributes="href python: context.absolute_url()+'/@@download/submission_file'">Submitted File</a>
+
+	</div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
