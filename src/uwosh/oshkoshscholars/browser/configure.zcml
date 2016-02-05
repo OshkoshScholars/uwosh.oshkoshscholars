@@ -25,4 +25,11 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="*"
+      name="add_submission_in_home_folder"
+      permission="zope2.Public"
+      class=".views.AddSubmissionHomeFolder"
+      />
+
 </configure>

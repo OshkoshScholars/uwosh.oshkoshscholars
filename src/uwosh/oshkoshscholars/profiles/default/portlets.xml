@@ -4,31 +4,31 @@
     manager="plone.rightcolumn" type="plone.portlet.static.Static"
     visible="True">
   <property name="text">&lt;h2&gt;Students&lt;/h2&gt;
-      &lt;ul&gt;
-      &lt;li&gt;&lt;a class="decorativebutton" href="resolveuid/c251a7661d26427ea56ed67e3de34f6c" target="_self" title=""&gt;View my submissions&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a class="external-link decorativebutton" href="++add++StudentSubmission?_authenticator=2c2f3d4b7db6976bd8050d2c5f38587222dfc1d4" target="_self" title=""&gt;Submit an entry&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;p&gt; &lt;/p&gt;
-      &lt;h2&gt;Faculty Advisors&lt;/h2&gt;
-      &lt;ul&gt;
-      &lt;li&gt;&lt;a class="internal-link decorativebutton" href="resolveuid/48d4afb0837145dab64b4ffe427ef264" target="_self" title=""&gt;View my students' submissions&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;p&gt; &lt;/p&gt;
-      &lt;h2&gt;Reviewers&lt;/h2&gt;
-      &lt;ul&gt;
-      &lt;li&gt;Submissions I'm reviewing&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;p&gt; &lt;/p&gt;
-      &lt;h2&gt;Editorial Review Board&lt;/h2&gt;
-      &lt;ul&gt;
-      &lt;li&gt;Editorial Dashboard&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;p&gt; &lt;/p&gt;
-      &lt;h2&gt;Office Staff&lt;/h2&gt;
-      &lt;ul&gt;
-      &lt;li&gt;&lt;a class="internal-link decorativebutton" href="resolveuid/2d56974a239848438c5dfbc359d4a413" target="_self" title=""&gt;Panopticon dashboard&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;p&gt; &lt;/p&gt;</property>
+   &lt;ul&gt;
+   &lt;li&gt;&lt;a class="decorativebutton" href="resolveuid/c251a7661d26427ea56ed67e3de34f6c" target="_self" title=""&gt;View my submissions&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a class="external-link decorativebutton" href="add_submission_in_home_folder" target="_self" title=""&gt;Submit an entry&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p&gt; &lt;/p&gt;
+   &lt;h2&gt;Faculty Advisors&lt;/h2&gt;
+   &lt;ul&gt;
+   &lt;li&gt;&lt;a class="internal-link decorativebutton" href="resolveuid/48d4afb0837145dab64b4ffe427ef264" target="_self" title=""&gt;View my students' submissions&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p&gt; &lt;/p&gt;
+   &lt;h2&gt;Reviewers&lt;/h2&gt;
+   &lt;ul&gt;
+   &lt;li&gt;Submissions I'm reviewing&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p&gt; &lt;/p&gt;
+   &lt;h2&gt;Editorial Review Board&lt;/h2&gt;
+   &lt;ul&gt;
+   &lt;li&gt;Editorial Dashboard&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p&gt; &lt;/p&gt;
+   &lt;h2&gt;Office Staff&lt;/h2&gt;
+   &lt;ul&gt;
+   &lt;li&gt;&lt;a class="internal-link decorativebutton" href="resolveuid/2d56974a239848438c5dfbc359d4a413" target="_self" title=""&gt;Panopticon dashboard&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p&gt; &lt;/p&gt;</property>
   <property name="more_url"></property>
   <property name="omit_border">False</property>
   <property name="header">How Do I...?</property>
