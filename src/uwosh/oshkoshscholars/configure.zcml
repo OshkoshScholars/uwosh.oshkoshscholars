@@ -7,10 +7,7 @@
 
   <includeDependencies package="." />
 
-  <i18n:registerTranslations directory="locales" />
-
   <include package=".browser" />
-
 
   <genericsetup:registerProfile
       name="default"
@@ -20,11 +17,30 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="uwosh.oshkoshscholars: uninstall"
+      directory="profiles/uninstall"
+      description="Removes the uwosh.oshkoshscholars add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:importStep
       name="uwosh.oshkoshscholars-postInstall"
       title="uwosh.oshkoshscholars post_install import step"
       description="Post install import step from uwosh.oshkoshscholars"
       handler=".setuphandlers.post_install">
   </genericsetup:importStep>
+
+  <subscriber
+      for="plone.dexterity.interfaces.IDexterityContainer
+	   zope.lifecycleevent.IObjectAddedEvent"
+      handler=".events.event_submission_added"
+      />
+
+  <subscriber
+     for="plone.dexterity.interfaces.IDexterityContainer
+	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+     handler=".events.on_submit_email_advisors" />
 
 </configure>

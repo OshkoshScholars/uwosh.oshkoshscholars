@@ -11,8 +11,14 @@
     <tal:main-macro metal:define-macro="main"
 	tal:define="workflow_state python: context.restrictedTraverse('@@plone_context_state').workflow_state();
 		    member python: context.restrictedTraverse('@@plone_portal_state').member();
+		    member_id member/id;
+		    faculty_id1 context/faculty_id;
+		    faculty_id2 context/faculty_id2;
 		    reviewer_id context/reviewer;
-		    is_submissionreviewer python: member.id == reviewer_id">
+		    is_submissionreviewer python: member_id == reviewer_id;
+		    is_advisor python: member_id in (faculty_id1, faculty_id2);
+		    is_owner python: member_id == context.Creator();
+		    ">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -26,15 +32,18 @@
 
 	<div id="submissionnotices" style="border: 1px solid; clear: left;">
 	  <div id="workflow_state">
-	    Workflow state: 
-	    <div tal:content="workflow_state">
-	      [state]
-	    </div>
+	    Workflow state: <span tal:content="workflow_state"> [state] </span>
 	  </div>
 	  <div id="user_role">
-	    Viewer is reviewer? 
-	    <div tal:content="is_submissionreviewer">
-	      [is_submissionreviewer]
+	    <div tal:condition="is_owner">
+	      You are this submission Owner.
+	      <span tal:condition="python: workflow_state == 'private'">Warning: this submission is not yet in the review queue. To submit, <a href="content_status_modify?workflow_action=submit">click here</a> or use the State menu and choose "Submit for publication". </span>
+	    </div>
+	    <div tal:condition="is_submissionreviewer">
+	      You are a Reviewer. Your responsibilities are: ...
+	    </div>
+	    <div tal:condition="is_advisor">
+	      You are a Faculty Advisor. Your responsibilities are: ...
 	    </div>
 	  </div>
 	</div>
