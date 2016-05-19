@@ -43,4 +43,14 @@
 	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
      handler=".events.on_submit_email_advisors" />
 
+  <subscriber
+     for="plone.dexterity.interfaces.IDexterityContainer
+	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+     handler=".events.on_assign_to_reviewer" />
+
+  <subscriber
+     for="plone.dexterity.interfaces.IDexterityContainer
+	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+     handler=".events.on_remove_identifying_info" />
+
 </configure>
