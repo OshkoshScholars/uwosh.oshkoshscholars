@@ -10,6 +10,9 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
 	tal:define="workflow_state python: context.restrictedTraverse('@@plone_context_state').workflow_state();
+		    wf_tool here/portal_workflow;
+		    wf python: wf_tool['oshkosh-scholar-submission-workflow'];
+		    workflow_state_description python: wf.states[workflow_state].description;
 		    member python: context.restrictedTraverse('@@plone_portal_state').member();
 		    member_id member/id;
 		    faculty_id1 context/faculty_id;
@@ -18,6 +21,10 @@
 		    is_submissionreviewer python: member_id == reviewer_id;
 		    is_advisor python: member_id in (faculty_id1, faculty_id2);
 		    is_owner python: member_id == context.Creator();
+		    all_local_roles python: context.get_local_roles();
+		    local_roles python: context.get_local_roles_for_userid(member_id);
+		    roles_in_context python: member.getRolesInContext(context);
+		    is_managing_editor python: 'Manager' in roles_in_context or 'Site Administrator' in roles_in_context;
 		    ">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -31,19 +38,55 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
 	<div id="submissionnotices" style="border: 1px solid; clear: left;">
-	  <div id="workflow_state">
-	    Workflow state: <span tal:content="workflow_state"> [state] </span>
+	  <div id="workflow_state_info">
+	    This submission is <b><span id="workflow_state" tal:content="workflow_state"> [state] </span></b> – 
+	    <em> <span id="workflow_state_description" tal:content="workflow_state_description"> [state description] </span> </em>
 	  </div>
 	  <div id="user_role">
+	    <div id="role_info">
+	      <tt>
+		member_id: <span tal:content="member_id">[member_id]</span>
+		All local roles: <span tal:content="all_local_roles">[all_local_roles]</span>
+		Local roles: <span tal:content="local_roles">[local_roles]</span>
+		Roles in context: <span tal:content="roles_in_context">[roles_in_context]</span>
+	      </tt>
+	    </div>
 	    <div tal:condition="is_owner">
-	      You are this submission Owner.
-	      <span tal:condition="python: workflow_state == 'private'">Warning: this submission is not yet in the review queue. To submit, <a href="content_status_modify?workflow_action=submit">click here</a> or use the State menu and choose "Submit for publication". </span>
+	      <b>You are the Owner of this submission.</b> 
+	      <span tal:condition="python: workflow_state == 'private'">
+		Warning: this submission is not yet in the review queue. To submit, please check that the submission is correct, then <a href="content_status_modify?workflow_action=submit">click here</a> 
+	      </span>
+	      <span tal:condition="python: workflow_state == 'pending'">
+		The Managing Editor will assign your submission to a faculty reviewer.
+	      </span>
+	      If you don't see an Edit button you may <a href="contact-info">contact us</a> if anything in your submission needs to be changed. 
 	    </div>
 	    <div tal:condition="is_submissionreviewer">
-	      You are a Reviewer. Your responsibilities are: ...
+	      <b>You are a Reviewer for this submission.</b>
+	      Please download the <a href="@@download/submission_file">submitted file</a>. Once you have completed your review, return to this submission and transition it to the next state by <a href="content_status_modify?workflow_action=remove-reviewer-info">clicking on this</a>. When you do this, your view permission will be revoked on this submission, and you will see "Insufficient Privileges" even though the system worked correctly.
 	    </div>
 	    <div tal:condition="is_advisor">
-	      You are a Faculty Advisor. Your responsibilities are: ...
+	      <b>You are a Faculty Advisor for this submission.</b>
+	      Please check that the submission is correct. The Managing Editor will assign another faculty member to review it. 
+	    </div>
+	    <div tal:condition="is_managing_editor">
+	      <b>You are the Managing Editor.</b> 
+	      <span tal:condition="python: workflow_state == 'private'">Warning: this submission has not yet been submitted by the student. </span>
+	      <span tal:condition="python: workflow_state == 'pending'"
+		    tal:define="reviewer here/reviewer|nothing;
+				review_deadline here/review_deadline|nothing;">
+		<span tal:condition="python: not reviewer or reviewer.strip() == ''">
+		  You must <a href="edit" target="_blank">edit this submission (new window)</a>, click the Office Use Only tab, specify a faculty reviewer and a review deadline, and save. Then use the <a href="content_status_modify?workflow_action=assign-to-reviewer">Assign to Reviewer</a> transition.
+		</span>
+		<span tal:condition="python: reviewer and reviewer.strip() != ''">
+		  You have set the faculty reviewer to be <b><span tal:content="reviewer">[reviewer]</span></b> and the review deadline to <b><span tal:content="review_deadline">[review deadline]</span></b>.
+		  To change these, <a href="edit" target="_blank">edit this submission (new window)</a>, click the Office Use Only tab, change the faculty reviewer and review deadline, and save. Then use the <a href="content_status_modify?workflow_action=assign-to-reviewer">Assign to Reviewer</a> transition.
+		</span>
+	      </span>
+	    </div>	    
+	    <div class="generic_info">
+	      You will be notified by email as the submission progresses through the workflow. 
+	      You are free to view this submission and its current review state at any time by returning to this web site and logging in.
 	    </div>
 	  </div>
 	</div>
