@@ -1,7 +1,9 @@
 import logging
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import getToolByName
-
+from plone.app.textfield.interfaces import ITransformer
+from plone import api
+from plone.namedfile.file import NamedBlobFile
 
 log = logging.getLogger('uwosh.oshkoshscholars')
 
@@ -64,18 +66,23 @@ def event_submission_added(submission, event):
     if submission.portal_type != 'StudentSubmission':
         return
 
+    # set description / summary
+    transformer = ITransformer(submission)
+    abstract_text = transformer(submission.abstract, 'text/plain')
+    if len(abstract_text) > 497:
+        abstract_text = abstract_text[:497]+'...'
+    submission.setDescription(abstract_text)
+
     # set faculty advisor IDs
-    
     pm = getToolByName(submission, 'portal_membership')
     email1 = submission.faculty_email
-    if email1.strip() != '':
+    if email1 and email1.strip() != '':
         results = pm.searchMembers('email', email1)
         if len(results) > 0:
             faculty_id1 = results[0]['username']
             submission.faculty_id = faculty_id1
-        
     email2 = submission.faculty_email2
-    if email2.strip() != '':
+    if email2 and email2.strip() != '':
         results2 = pm.searchMembers('email', email2)
         if len(results2) > 0:
             faculty_id2 = results2[0]['username']
@@ -92,12 +99,126 @@ def event_submission_added(submission, event):
                   submission.student_email3,
                   submission.student_email4,
                   submission.student_email5]:
-        if email.strip() != '':
+        if email and email.strip() != '':
             results = pm.searchMembers('email', email)
             if len(results) > 0:
                 userid = results[0]['username']
                 submission.manage_setLocalRoles(userid, ['Reader',])
-    
-    # force reindex
+
+    # copy the submitted file into the submission folder
+    file = submission.submission_file
+    contained_file_obj = api.content.create(
+        submission, 'File',
+        id='submitted-file',
+        title=file.filename,
+        safe_id=True
+    )
+    contained_file_obj.setFile(file.data, filename=file.filename)
+
     submission.reindexObject()
 
+
+def send_email(context, emails, subject, message):
+    mail_host = getToolByName(context, 'MailHost')
+    portal_url = getToolByName(context, 'portal_url')
+    portal = portal_url.getPortalObject()
+    sender = portal.getProperty('email_from_address')
+    if not sender:
+        log.error('unable to send email because the site has no email_from_address set')
+        return
+    for email in emails:
+        email = email.strip()
+        if email != '' and email is not None:
+            mail_host.secureSend(message, email, sender, subject)
+
+
+def on_assign_to_reviewer(submission, event):
+    """Assign local role for reviewer and notify reviewer by email"""
+    if submission.portal_type != 'StudentSubmission':
+        return
+    if event.transition is None or event.transition.id != 'assign-to-reviewer':
+        return
+    context = submission
+    reviewer_id = submission.reviewer
+    deadline = submission.review_deadline
+    # grant roles to reviewer
+    if reviewer_id:
+        context.manage_setLocalRoles(reviewer_id, ['Reader', 'Reviewer',])
+    else:
+        raise ValueError("You must specify a reviewer before using this transition")
+    if not deadline:
+        raise ValueError("You must specify a review deadline before using this transition")
+    portal_url = getToolByName(context, 'portal_url')
+    portal = portal_url.getPortalObject()
+    subject = "[Oshkosh Scholar] student submission for your review"
+    message = """
+A submission \"%s\" requires your review
+
+%s 
+
+You can view the submission by clicking on %s and logging in using your NetID. 
+
+""" % (context.title, portal.absolute_url(), context.absolute_url(),)
+
+    pm = getToolByName(context,'portal_membership')
+    reviewer = pm.getMemberById(reviewer_id)
+    email_address = reviewer.getProperty('email')
+    send_email(context, [email_address,], subject, message)
+
+
+def on_remove_identifying_info(submission, event):
+    """Remove local role for reviewer, and notify managing editor by email"""
+    if submission.portal_type != 'StudentSubmission':
+        return
+    if event.transition is None or event.transition.id != 'remove-reviewer-info':
+        return
+    context = submission
+    reviewer_id = submission.reviewer
+    # revoke roles to reviewer
+    if reviewer_id != '':
+        context.manage_delLocalRoles([reviewer_id])
+    portal_url = getToolByName(context, 'portal_url')
+    portal = portal_url.getPortalObject()
+    subject = "[Oshkosh Scholar] student submission requires removal of identifying info"
+    message = """
+A submission \"%s\" requires that you remove identifying info:
+
+%s 
+
+You can view the submission by clicking on %s and logging in using your NetID. 
+
+""" % (context.title, portal.absolute_url(), context.absolute_url(),)
+
+    pm = getToolByName(context,'portal_membership')
+    email_address = context.email_from_address
+    send_email(context, [email_address,], subject, message)
+
+
+def on_send_back(submission, event):
+    """Remove local role for reviewer, and notify submitter by email"""
+    if submission.portal_type != 'StudentSubmission':
+        return
+    if event.transition is None or event.transition.id != 'send-back-to-student':
+        return
+    context = submission
+    reviewer_id = submission.reviewer
+    # revoke roles to reviewer
+    if reviewer_id != '':
+        context.manage_delLocalRoles([reviewer_id])
+    portal_url = getToolByName(context, 'portal_url')
+    portal = portal_url.getPortalObject()
+    subject = "[Oshkosh Scholar] student submission has been sent back"
+    message = """
+A submission \"%s\" has been sent back to the submitter:
+
+%s 
+
+You can view the submission by clicking on %s and logging in using your NetID. 
+
+""" % (context.title, portal.absolute_url(), context.absolute_url(),)
+
+    pm = getToolByName(context,'portal_membership')
+    import pdb;pdb.set_trace()
+    owner = pm.getMemberById(context.Owner)
+    email_address = owner.getProperty('email')
+    send_email(context, [email_address,], subject, message)
