@@ -8,7 +8,6 @@
  <permission>Request review</permission>
  <state state_id="accepted-for-publication" title="Accepted For Publication">
   <description>* editorial board</description>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="copyedit-for-published"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -48,8 +47,6 @@
 
 * reviewers (they should only be able to see the submission files or submissions they’re reviewing)</description>
   <exit-transition transition_id="deny"/>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="remove-reviewer-info"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -89,9 +86,7 @@
 * author(s), mentor(s), editorial board
 
 student must be able to upload revisions</description>
-  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="remove-identifying-info"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -129,7 +124,6 @@ student must be able to upload revisions</description>
  </state>
  <state state_id="copyediting-for-honorable-mention" title="Copyediting For Honorable Mention">
   <description>* author(s), mentor(s), editorial board</description>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="finish-copyediting-for-honorable-mention"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -167,7 +161,6 @@ student must be able to upload revisions</description>
  <state state_id="copyediting-for-honorable-mention-finished" title="Copyediting For Honorable Mention Finished">
   <description>* editorial board</description>
   <exit-transition transition_id="publish-honorable-mention"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -201,7 +194,6 @@ student must be able to upload revisions</description>
  </state>
  <state state_id="copyediting-for-publication-finished" title="Copyediting For Published Finished">
   <description>* editorial board</description>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <exit-transition transition_id="publish"/>
   <permission-map name="Access contents information" acquired="False">
@@ -239,7 +231,6 @@ student must be able to upload revisions</description>
  <state state_id="copyediting-for-published" title="Copyediting For Published">
   <description>* author(s), mentor(s), editorial board</description>
   <exit-transition transition_id="finish-copyediting-for-published"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -303,8 +294,6 @@ student must be able to upload revisions</description>
  </state>
  <state state_id="honorable-mention" title="Honorable Mention">
   <description>* editorial board</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="copyedit-for-honorable-mention"/>
   <exit-transition transition_id="member-withdraws-submission"/>
@@ -344,8 +333,6 @@ student must be able to upload revisions</description>
   <description>Visible to everyone
 
 * public, not editable except by editorial board</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -373,7 +360,6 @@ student must be able to upload revisions</description>
  </state>
  <state state_id="identifying-info-removal" title="Identifying Info Removal">
   <description>* editorial board</description>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="send-to-selection-committee"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -414,8 +400,6 @@ student must be able to upload revisions</description>
   <description>Waiting to be reviewed, not editable by the owner.
 
 * author(s), mentor(s), editorial board</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="assign-to-reviewer"/>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="member-withdraws-submission"/>
@@ -485,22 +469,10 @@ student must be able to upload revisions</description>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <state state_id="public" title="Public">
-  <permission-map name="Access contents information" acquired="True">
-  </permission-map>
-  <permission-map name="Change portal events" acquired="True">
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="True">
-  </permission-map>
-  <permission-map name="View" acquired="True">
-  </permission-map>
- </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone
 
 * public, not editable except by editorial board</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -531,7 +503,6 @@ student must be able to upload revisions</description>
 
 ME + FA will be doing this</description>
   <exit-transition transition_id="send-back-to-student"/>
-  <exit-transition transition_id="retract"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -567,20 +538,9 @@ ME + FA will be doing this</description>
    <group-role>Reader</group-role>
   </group-map>
  </state>
- <state state_id="revision" title="Revision">
-  <permission-map name="Access contents information" acquired="True">
-  </permission-map>
-  <permission-map name="Change portal events" acquired="True">
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="True">
-  </permission-map>
-  <permission-map name="View" acquired="True">
-  </permission-map>
- </state>
  <state state_id="selection-committee" title="Selection Committee">
   <description>* editorial board, selection committee members (selection committee members need to be able to see all submissions)</description>
   <exit-transition transition_id="accept-for-publication"/>
-  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="include-as-honorable-mention"/>
   <exit-transition transition_id="member-withdraws-submission"/>
@@ -623,7 +583,6 @@ ME + FA will be doing this</description>
  </state>
  <state state_id="withdrawn" title="Withdrawn">
   <description>* author(s), mentor(s), editorial board</description>
-  <exit-transition transition_id="reject"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
@@ -708,9 +667,9 @@ ME + FA will be doing this</description>
    <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="member-withdraws-submission" title="Member withdraws submission" new_state="withdrawn" trigger="USER" before_script="" after_script="">
+ <transition transition_id="member-withdraws-submission" title="Withdraw submission" new_state="withdrawn" trigger="USER" before_script="" after_script="">
   <description>Officially withdraw your submission</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=member-withdraws-submission" category="workflow" icon="">Member withdraws submission</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=member-withdraws-submission" category="workflow" icon="">Withdraw submission</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
@@ -732,13 +691,6 @@ ME + FA will be doing this</description>
    <guard-role>Site Administrator</guard-role>
   </guard>
  </transition>
- <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="private" trigger="USER" before_script="" after_script="">
-  <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">Send back</action>
-  <guard>
-   <guard-permission>Review portal content</guard-permission>
-  </guard>
- </transition>
  <transition transition_id="remove-identifying-info" title="Remove Identifying Info" new_state="identifying-info-removal" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=remove-identifying-info" category="workflow" icon="">Remove Identifying Info</action>
   <guard>
@@ -751,14 +703,8 @@ ME + FA will be doing this</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=remove-reviewer-info" category="workflow" icon="">Remove Reviewer Info</action>
   <guard>
    <guard-role>Manager</guard-role>
+   <guard-role>Reviewer</guard-role>
    <guard-role>Site Administrator</guard-role>
-  </guard>
- </transition>
- <transition transition_id="retract" title="Member retracts submission" new_state="private" trigger="USER" before_script="" after_script="">
-  <description>If you submitted the item by mistake or want to perform additional edits, this will take it back.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
-  <guard>
-   <guard-permission>Request review</guard-permission>
   </guard>
  </transition>
  <transition transition_id="send-back-to-student" title="Send Back to Student" new_state="being-revised-by-student" trigger="USER" before_script="" after_script="">
