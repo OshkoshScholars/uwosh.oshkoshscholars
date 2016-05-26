@@ -89,9 +89,11 @@ def event_submission_added(submission, event):
             submission.faculty_id2 = faculty_id2
 
     # grant Reader role to faculty advisors
-    if faculty_id1 != '':
-        submission.manage_setLocalRoles(faculty_id1, ['Reader',])
-    if faculty_id2 != '':
+    faculty_id = submission.faculty_id
+    faculty_id2 = submission.faculty_id2
+    if faculty_id:
+        submission.manage_setLocalRoles(faculty_id, ['Reader',])
+    if faculty_id2:
         submission.manage_setLocalRoles(faculty_id2, ['Reader',])
 
     # grant Reader role to other students listed
