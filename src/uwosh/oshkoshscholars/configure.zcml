@@ -53,4 +53,9 @@
 	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
      handler=".events.on_remove_identifying_info" />
 
+  <subscriber
+     for="plone.dexterity.interfaces.IDexterityContainer
+	  Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+     handler=".events.on_send_to_selection_committee" />
+
 </configure>
