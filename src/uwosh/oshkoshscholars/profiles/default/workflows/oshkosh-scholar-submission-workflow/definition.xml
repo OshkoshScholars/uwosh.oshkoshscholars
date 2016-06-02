@@ -359,7 +359,7 @@ student must be able to upload revisions</description>
   </group-map>
  </state>
  <state state_id="identifying-info-removal" title="Identifying Info Removal">
-  <description>* editorial board</description>
+  <description>Editorial team removes all identifying information from the submission.</description>
   <exit-transition transition_id="send-to-selection-committee"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -695,6 +695,7 @@ ME + FA will be doing this</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=remove-identifying-info" category="workflow" icon="">Remove Identifying Info</action>
   <guard>
    <guard-permission>Request review</guard-permission>
+   <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Site Administrator</guard-role>
   </guard>
