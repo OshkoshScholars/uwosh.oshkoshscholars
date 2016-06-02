@@ -245,7 +245,7 @@
       &lt;/field&gt;
       &lt;fieldset name="office_use_only" label="Office Use Only"&gt;
       &lt;field name="reviewer" type="zope.schema.TextLine"&gt;
-        &lt;description/&gt;
+        &lt;description&gt;ID only please&lt;/description&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Reviewer&lt;/title&gt;
       &lt;/field&gt;
