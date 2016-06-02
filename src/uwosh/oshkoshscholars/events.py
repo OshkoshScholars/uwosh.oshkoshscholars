@@ -38,9 +38,10 @@ If you have any questions or concerns, please reply to this message.
 
     emails = [context.faculty_email, context.faculty_email2]
     for email in emails:
-        email = email.strip()
-        if email != '' and email is not None:
-            mail_host.secureSend(message, email, sender, subject)
+        if email:
+            email = email.strip()
+            if email != '' and email is not None:
+                mail_host.secureSend(message, email, sender, subject)
 
     # notify managing editor
     subject = "[Oshkosh Scholar] student submission was submitted for review"
@@ -209,9 +210,9 @@ def on_send_back(submission, event):
         context.manage_delLocalRoles([reviewer_id])
     portal_url = getToolByName(context, 'portal_url')
     portal = portal_url.getPortalObject()
-    subject = "[Oshkosh Scholar] student submission has been sent back"
+    subject = "[Oshkosh Scholar] student submission has been sent back for review"
     message = """
-A submission \"%s\" has been sent back to the submitter:
+A submission \"%s\" has been sent back to the student for review:
 
 %s 
 
@@ -220,7 +221,43 @@ You can view the submission by clicking on %s and logging in using your NetID.
 """ % (context.title, portal.absolute_url(), context.absolute_url(),)
 
     pm = getToolByName(context,'portal_membership')
-    import pdb;pdb.set_trace()
     owner = pm.getMemberById(context.Owner)
     email_address = owner.getProperty('email')
     send_email(context, [email_address,], subject, message)
+
+
+def on_send_to_selection_committee(submission, event):
+    """Notify selection committee that they can review the submission"""
+    if submission.portal_type != 'StudentSubmission':
+        return
+    if event.transition is None or event.transition.id != 'send-to-selection-committee':
+        return
+    context = submission
+    reviewer_id = submission.reviewer
+    # look up selection committee members
+    pg = getToolByName(context,'portal_groups')
+    pm = getToolByName(context,'portal_membership')
+    committee_members = pg.getGroupMembers('selection-committee')
+    # grant view to selection committee members
+    email_addresses = []
+    for id in committee_members: 
+        if id != '':
+            context.manage_setLocalRoles(id, ['Reader',])
+            member = pm.getMemberById(id)
+            email_addresses.append(member.getProperty('email'))
+    portal_url = getToolByName(context, 'portal_url')
+    portal = portal_url.getPortalObject()
+    subject = "[Oshkosh Scholar] student submission sent to selection committee"
+    message = """
+This submission \"%s\" has been sent to the selection committee:
+
+%s 
+
+You can view the submission by clicking on %s and logging in using your NetID. 
+
+""" % (context.title, portal.absolute_url(), context.absolute_url(),)
+
+    for email_address in email_addresses:
+        send_email(context, [email_address,], subject, message)
+
+
