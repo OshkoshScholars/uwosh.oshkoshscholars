@@ -38,55 +38,472 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
 	<div id="submissionnotices" style="border: 1px solid; clear: left;">
+	  
 	  <div id="workflow_state_info">
-	    This submission is <b><span id="workflow_state" tal:content="workflow_state"> [state] </span></b> – 
-	    <em> <span id="workflow_state_description" tal:content="workflow_state_description"> [state description] </span> </em>
-	  </div>
-	  <div id="user_role">
+	    <p>
+	      WORKFLOW STATE: <b><span id="workflow_state" tal:content="workflow_state"> [state] </span></b>
+	    </p>
+	    <p>
+	      <em>"<span id="workflow_state_description" tal:content="workflow_state_description"> [state description] </span>"</em>
+	    </p>
 	    <div id="role_info">
-	      <tt>
-		member_id: <span tal:content="member_id">[member_id]</span>
-		All local roles: <span tal:content="all_local_roles">[all_local_roles]</span>
-		Local roles: <span tal:content="local_roles">[local_roles]</span>
-		Roles in context: <span tal:content="roles_in_context">[roles_in_context]</span>
-	      </tt>
+	      <p>
+		ROLES: <tt>
+		  member_id: <span tal:content="member_id">[member_id]</span>
+		  All local roles: <span tal:content="all_local_roles">[all_local_roles]</span>
+		  Local roles: <span tal:content="local_roles">[local_roles]</span>
+		  Roles in context: <span tal:content="roles_in_context">[roles_in_context]</span>
+		</tt>
+	      </p>
 	    </div>
-	    <div tal:condition="is_owner">
-	      <b>You are the Owner of this submission.</b> 
-	      <span tal:condition="python: workflow_state == 'private'">
-		Warning: this submission is not yet in the review queue. To submit, please check that the submission is correct, then <a href="content_status_modify?workflow_action=submit">click here</a> 
-	      </span>
-	      <span tal:condition="python: workflow_state == 'pending'">
-		The Managing Editor will assign your submission to a faculty reviewer.
-	      </span>
-	      If you don't see an Edit button you may <a href="contact-info">contact us</a> if anything in your submission needs to be changed. 
+	  </div>
+	  
+	  <div id="user_role">
+	    
+	    <div tal:condition="python: workflow_state == 'private'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		  Warning: this submission is not yet in the review
+		  queue. Please check that the submission is
+		  correct, then
+		  <a href="content_status_modify?workflow_action=submit">start the submission process</a>.
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		  Warning: this submission has not yet been submitted by the student. 
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		  Warning: this submission has not yet been submitted by the student. 
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+	      </div>
+	      <p>
+	      </p>
 	    </div>
-	    <div tal:condition="is_submissionreviewer">
-	      <b>You are a Reviewer for this submission.</b>
-	      Please download the <a href="@@download/submission_file">submitted file</a>. Once you have completed your review, return to this submission and transition it to the next state by <a href="content_status_modify?workflow_action=remove-reviewer-info">clicking on this</a>. When you do this, your view permission will be revoked on this submission, and you will see "Insufficient Privileges" even though the system worked correctly.
+
+	    <div tal:condition="python: workflow_state == 'pending'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+		<p>
+		  The Managing Editor will assign your submission to a faculty reviewer.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<div tal:define="reviewer here/reviewer|nothing;
+				  review_deadline here/review_deadline|nothing;">
+		  <p tal:condition="python: not reviewer or reviewer.strip() == ''">
+		    You must <a href="edit" target="_blank">edit this
+		      submission (new window)</a>, click the "Office Use
+		    Only" tab, specify a faculty reviewer (ID only) and a review
+		    deadline, and save. 
+		  </p>
+		  <p tal:condition="python: reviewer and reviewer.strip() != ''">
+		    You have set the faculty reviewer ID to
+		    be <b><span tal:content="reviewer">[reviewer]</span></b>
+		    and the review deadline
+		    to <b><span tal:content="review_deadline">[review
+		    deadline]</span></b>.  To change
+		    these, <a href="edit">edit this submission</a>,
+		    click the Office Use Only tab, change the faculty
+		    reviewer and review deadline, and
+		    save. Then <a href="content_status_modify?workflow_action=assign-to-reviewer">send
+		    the submission to the faculty reviewer</a>.
+		  </p>
+		</div>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
 	    </div>
-	    <div tal:condition="is_advisor">
-	      <b>You are a Faculty Advisor for this submission.</b>
-	      Please check that the submission is correct. The Managing Editor will assign another faculty member to review it. 
+
+	    <div tal:condition="python: workflow_state == 'being-reviewed'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		  Please download
+		  the <a href="@@download/submission_file">submitted
+		  file</a>. Once you have completed your review,
+		  return to this submission
+		  and <a href="content_status_modify?workflow_action=remove-reviewer-info">transition
+		  it to the next state</a>. Your permissions will be
+		  revoked on this submission, and you will see
+		  "Insufficient Privileges" even though the system
+		  worked correctly.
+		</p>
+	      </div>
 	    </div>
-	    <div tal:condition="is_managing_editor">
-	      <b>You are the Managing Editor.</b> 
-	      <span tal:condition="python: workflow_state == 'private'">Warning: this submission has not yet been submitted by the student. </span>
-	      <span tal:condition="python: workflow_state == 'pending'"
-		    tal:define="reviewer here/reviewer|nothing;
-				review_deadline here/review_deadline|nothing;">
-		<span tal:condition="python: not reviewer or reviewer.strip() == ''">
-		  You must <a href="edit" target="_blank">edit this submission (new window)</a>, click the Office Use Only tab, specify a faculty reviewer and a review deadline, and save. Then use the <a href="content_status_modify?workflow_action=assign-to-reviewer">Assign to Reviewer</a> transition.
-		</span>
-		<span tal:condition="python: reviewer and reviewer.strip() != ''">
-		  You have set the faculty reviewer to be <b><span tal:content="reviewer">[reviewer]</span></b> and the review deadline to <b><span tal:content="review_deadline">[review deadline]</span></b>.
-		  To change these, <a href="edit" target="_blank">edit this submission (new window)</a>, click the Office Use Only tab, change the faculty reviewer and review deadline, and save. Then use the <a href="content_status_modify?workflow_action=assign-to-reviewer">Assign to Reviewer</a> transition.
-		</span>
-	      </span>
-	    </div>	    
+	    
+	    <div tal:condition="python: workflow_state == 'accepted-for-publication'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+	    
+	    <div tal:condition="python: workflow_state == 'being-revised-by-student'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		  The submission is being revised by the student.
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		  The submission is being revised by the student.
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		  The submission is being revised by the student.
+		</p>
+	      </div>
+	    </div>
+	    
+	    <div tal:condition="python: workflow_state == 'copyediting-for-honorable-mention'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+	    
+	    <div tal:condition="python: workflow_state == 'copyediting-for-honorable-mention-finished'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'copyediting-for-publication-finished'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'copyediting-for-published'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'denied'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'honorable-mention'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'honorable-mention-published'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'identifying-info-removal'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'published'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	    </div>
+
+	    <div tal:condition="python: workflow_state == 'removing-id-info'">
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		  You must review the submission and remove any information from it that identifies the reviewer. You do this by downloading the file, editing it, then re-uploading it to the submission. Then <a href="content_status_modify?workflow_action=send-back-to-student">send the submission back to the student for revision</a>.
+		</p>
+	      </div>
+	    </div>
+	    
+	    <div tal:condition="python: workflow_state == 'selection-committee'">
+	    </div>
+	    
+	    <div tal:condition="python: workflow_state == 'withdrawn'">
+	    </div>
+
 	    <div class="generic_info">
-	      You will be notified by email as the submission progresses through the workflow. 
-	      You are free to view this submission and its current review state at any time by returning to this web site and logging in.
+	      You will be notified by email as the submission
+	      progresses through the workflow.  
 	    </div>
 	  </div>
 	</div>
