@@ -207,7 +207,16 @@
 	    
 	    <div tal:condition="python: workflow_state == 'being-revised-by-student'">
 	      <div tal:condition="is_owner">
-		<b>You are the Owner of this submission.</b> 
+		<b>You are the Owner of this submission.</b>
+		<p>
+		  You should make revisions to your submission as per
+		  the review notes made by the faculty reviewer. To
+		  make revisions, download the latest version of your
+		  submission file, make the edits, save the file under
+		  a new name, and re-upload it here. Then you
+		  should <a href="content_status_modify?workflow_action=remove-identifying-info">send
+		  it on to the next step</a>.
+		</p>
 		<p>
 		  If you don't see an Edit button you
 		  may <a href="contact-info">contact us</a> if anything in
@@ -217,19 +226,19 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
-		  The submission is being revised by the student.
+		  
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
 		<p>
-		  The submission is being revised by the student.
+		  
 		</p>
 	      </div>
 	      <div tal:condition="is_submissionreviewer">
 		<b>You are a Reviewer for this submission.</b>
 		<p>
-		  The submission is being revised by the student.
+		  
 		</p>
 	      </div>
 	    </div>
@@ -444,6 +453,13 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
+		  You should review the latest submission file and
+		  remove any identifying information the student may
+		  have left in it. To do this, you should download the
+		  latest submission file, make any edits required,
+		  save the document, and re-upload it here. Then, you
+		  should <a href="content_status_modify?workflow_action=send-to-selection-committee">send
+		  the submission to the selection committee</a>.
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
