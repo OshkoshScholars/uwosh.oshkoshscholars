@@ -79,27 +79,26 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
-		  Warning: this submission has not yet been submitted by the student. 
+		  This submission has not yet been submitted by the student. 
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
 		<p>
-		  Warning: this submission has not yet been submitted by the student. 
+		  This submission has not yet been submitted by the student. 
 		</p>
 	      </div>
 	      <div tal:condition="is_submissionreviewer">
 		<b>You are a Reviewer for this submission.</b>
+		<p>
+		  This submission has not yet been submitted by the student. 
+		</p>
 	      </div>
 	      <div tal:condition="is_selection_committee_member">
 		<b>You are a member of the selection committee.</b> 
 		<p>
+		  This submission has not yet been submitted by the student. 
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	      <p>
 	      </p>
@@ -114,7 +113,9 @@
 		  your submission needs to be changed.
 		</p>
 		<p>
-		  The Managing Editor will assign your submission to a faculty reviewer.
+		  You have submitted this for review, and the Managing
+		  Editor will assign your submission to a faculty
+		  reviewer.
 		</p>
 	      </div>
 	      <div tal:condition="is_managing_editor">
@@ -155,11 +156,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -187,12 +183,14 @@
 		<p>
 		  Please download
 		  the <a href="@@download/submission_file">submitted
-		  file</a>. Once you have completed your review,
+		    file</a> and review the document.</p>		
+		<p>Once you have completed your review,
 		  return to this submission
 		  and <a href="content_status_modify?workflow_action=remove-reviewer-info">transition
-		  it to the next state</a>. Your permissions will be
+		    it to the next state</a>. </p>
+		<p>Your permissions will be
 		  revoked on this submission, and you will see
-		  "Insufficient Privileges" even though the system
+		  "Insufficient Privileges" even though the system has
 		  worked correctly.
 		</p>
 	      </div>
@@ -200,11 +198,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -238,11 +231,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -251,46 +239,37 @@
 		<b>You are the Owner of this submission.</b>
 		<p>
 		  You should make revisions to your submission as per
-		  the review notes made by the faculty reviewer. To
-		  make revisions, download the latest version of your
-		  submission file, make the edits, save the file under
-		  a new name, and re-upload it here. Then you
-		  should <a href="content_status_modify?workflow_action=remove-identifying-info">send
-		  it on to the next step</a>.
+		  the review notes made by the faculty reviewer. </p>
+		<p>To make revisions:
 		</p>
-		<p>
-		  If you don't see an Edit button you
-		  may <a href="contact-info">contact us</a> if anything in
-		  your submission needs to be changed.
-		</p>
+		<ul>
+		  <li>download the latest version of your submission file</li>
+		  <li>make edits to the file</li>
+		  <li>make sure not to leave any identifying information about yourself in the file</li>
+		  <li>save the file under a new name</li>
+		  <li>upload the new file here</li>
+		  <li>then <a href="content_status_modify?workflow_action=remove-identifying-info">send it on to the next step</a></li>
+		</ul>
 	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
-		  
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
 		<p>
-		  
 		</p>
 	      </div>
 	      <div tal:condition="is_submissionreviewer">
 		<b>You are a Reviewer for this submission.</b>
 		<p>
-		  
 		</p>
 	      </div>
 	      <div tal:condition="is_selection_committee_member">
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -324,11 +303,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -362,11 +336,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -400,11 +369,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -438,11 +402,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -476,11 +435,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -514,11 +468,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -552,11 +501,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -573,15 +517,18 @@
 	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
-		<p>
-		  You should review the latest submission file and
+		<p>You should review the latest submission file and
 		  remove any identifying information the student may
-		  have left in it. To do this, you should download the
-		  latest submission file, make any edits required,
-		  save the document, and re-upload it here. Then, you
-		  should <a href="content_status_modify?workflow_action=send-to-selection-committee">send
-		  the submission to the selection committee</a>.
+		  have left in it. To do this:
 		</p>
+		<ul>
+		  <li>you should download the latest submission file</li>
+		  <li>make any edits required</li>
+		  <li>save the document</li>
+		  <li> re-upload it here</li>
+		  <li>then  <a href="content_status_modify?workflow_action=send-to-selection-committee">send
+		      the submission to the selection committee</a>.</li>
+		</ul>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
@@ -597,11 +544,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -635,11 +577,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -657,8 +594,14 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
-		  You must review the submission and remove any information from it that identifies the reviewer. You do this by downloading the file, editing it, then re-uploading it to the submission. Then <a href="content_status_modify?workflow_action=send-back-to-student">send the submission back to the student for revision</a>.
+		  You must review the submission and remove any information from it that identifies the reviewer. You do this by:
 		</p>
+		<ul>
+		  <li>downloading the file</li>
+		  <li>editing it</li>
+		  <li>re-uploading it here</li>
+		  <li>then <a href="content_status_modify?workflow_action=send-back-to-student">send the submission back to the student for revision</a>.</li>
+		</ul>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
@@ -674,11 +617,6 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -751,17 +689,13 @@
 		<b>You are a member of the selection committee.</b> 
 		<p>
 		</p>
-		<!-- <ul> -->
-		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
-		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
-		<!-- </ul> -->
 	      </div>
 	    </div>
 
 	    <div class="generic_info">
-	      You will be notified by email as the submission
-	      progresses through the workflow.  
+	      If any action is required on your part, you will be
+	      notified by email as the submission progresses through
+	      the workflow.
 	    </div>
 	  </div>
 	</div>
