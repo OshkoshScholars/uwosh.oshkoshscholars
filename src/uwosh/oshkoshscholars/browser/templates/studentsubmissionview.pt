@@ -122,24 +122,36 @@
 		<b>You are the Managing Editor.</b> 
 		<div tal:define="reviewer here/reviewer|nothing;
 				  review_deadline here/review_deadline|nothing;">
+
 		  <p tal:condition="python: not reviewer or reviewer.strip() == ''">
-		    You must <a href="edit" target="_blank">edit this
-		      submission (new window)</a>, click the "Office Use
-		    Only" tab, specify a faculty reviewer (ID only) and a review
-		    deadline, and save. 
+		    You must:
 		  </p>
+		  <ul>
+		    <li> <a href="edit" target="_blank">edit this
+			submission (new window)</a></li>
+		    <li>click the "Office Use
+		      Only" tab</li>
+		    <li>specify a faculty reviewer (ID only) and a review
+		      deadline</li>
+		    <li>Click Save.</li>
+		  </ul>
+
 		  <p tal:condition="python: reviewer and reviewer.strip() != ''">
 		    You have set the faculty reviewer ID to
 		    be <b><span tal:content="reviewer">[reviewer]</span></b>
 		    and the review deadline
 		    to <b><span tal:content="review_deadline">[review
-		    deadline]</span></b>.  To change
-		    these, <a href="edit">edit this submission</a>,
-		    click the Office Use Only tab, change the faculty
-		    reviewer and review deadline, and
-		    save. Then <a href="content_status_modify?workflow_action=assign-to-reviewer">send
-		    the submission to the faculty reviewer</a>.
-		  </p>
+			deadline]</span></b>.  </p>
+		  
+		  <p>To change these:</p> 
+		  <ul>
+		    <li><a href="edit" target="_blank">edit this submission (new window)</a></li>
+		    <li>Click the Office Use Only tab</li>
+		    <li>Change the faculty reviewer and review deadline</li>
+		    <li>Click Save</li>
+		    <li>Then <a href="content_status_modify?workflow_action=assign-to-reviewer">send
+			the submission to the faculty reviewer</a>.</li>
+		  </ul>	  
 		</div>
 	      </div>
 	      <div tal:condition="is_advisor">
@@ -180,18 +192,20 @@
 	      </div>
 	      <div tal:condition="is_submissionreviewer">
 		<b>You are a Reviewer for this submission.</b>
-		<p>
-		  Please download
-		  the <a href="@@download/submission_file">submitted
-		    file</a> and review the document.</p>		
-		<p>Once you have completed your review,
-		  return to this submission
-		  and <a href="content_status_modify?workflow_action=remove-reviewer-info">transition
-		    it to the next state</a>. </p>
-		<p>Your permissions will be
-		  revoked on this submission, and you will see
-		  "Insufficient Privileges" even though the system has
-		  worked correctly.
+		<p> Please do the following:</p>
+		<ul>
+		  <li>Download the <a href="@@download/submission_file">submitted
+		      file</a></li>
+		  <li>Save the file under a new name (do NOT include your name or other identifying information about yourself in the file name or in the file itself).</li>
+		  <li>Review the document, making comments in the document (XXX need more specific instructions XXX).</li>
+		  <li>Upload your file here</li>
+		  <li>Then <a href="content_status_modify?workflow_action=remove-reviewer-info">transition
+		    it to the next state</a>
+		</ul>
+		<p>Once you transition this submission, your view
+		  permission on it will be revoked, and you will see
+		  the message "Insufficient Privileges", even though
+		  the system has worked correctly.
 		</p>
 	      </div>
 	      <div tal:condition="is_selection_committee_member">
@@ -247,13 +261,12 @@
 		<p>
 		  You should make revisions to your submission as per
 		  the review notes made by the faculty reviewer. </p>
-		<p>To make revisions:
-		</p>
+		<p>To make revisions: </p>
 		<ul>
 		  <li>download the latest version of your submission file</li>
 		  <li>make edits to the file</li>
-		  <li>make sure not to leave any identifying information about yourself in the file</li>
 		  <li>save the file under a new name</li>
+		  <li>make sure not to leave any identifying information about yourself in the file or in the file name</li>
 		  <li>upload the new file here</li>
 		  <li>then <a href="content_status_modify?workflow_action=remove-identifying-info">send it on to the next step</a></li>
 		</ul>
@@ -355,46 +368,13 @@
 		  Please review this submission, then:
 		</p>
 		<ul>
-		  <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li>
+		  <li><a href="content_status_modify?workflow_action=copyedit-for-published">accept it for publication</a></li>
+		  <li><a href="content_status_modify?workflow_action=copyedit-for-honorable-mention">accept it as an Honorable Mention</a></li>
 		  <li><a href="content_status_modify?workflow_action=deny">deny it</a></li>
-		  <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li>
 		</ul>
 	      </div>
 	    </div>
 	    
-	    <div tal:condition="python: workflow_state == 'honorable-mention'">
-	      <div tal:condition="is_owner">
-		<b>You are the Owner of this submission.</b> 
-		<p>
-		</p>
-		<p>
-		  If you don't see an Edit button you
-		  may <a href="contact-info">contact us</a> if anything in
-		  your submission needs to be changed.
-		</p>
-	      </div>
-	      <div tal:condition="is_managing_editor">
-		<b>You are the Managing Editor.</b> 
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_advisor">
-		<b>You are a Faculty Advisor for this submission.</b>
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_submissionreviewer">
-		<b>You are a Reviewer for this submission.</b>
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_selection_committee_member">
-		<b>You are a member of the selection committee.</b> 
-		<p>
-		</p>
-	      </div>
-	    </div>
-
 	    <div tal:condition="python: workflow_state == 'copyediting-for-honorable-mention'">
 	      <div tal:condition="is_owner">
 		<b>You are the Owner of this submission.</b> 
@@ -408,8 +388,15 @@
 	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
-		<p>
-		</p>
+		<p>Please do the final copy editing prior to publication as Honorable Mention:</p>
+		<ul>
+		  <li>Download the file.</li>
+		  <li>Make any final edits</li>
+		  <li>Save the file under a new name</li>
+		  <li>Upload the new file here</li>
+		  <li>Then <a href="content_status_modify?workflow_action=finish-copyediting-for-honorable-mention">mark it as ready for publication as an Honorable Mention</a></li>
+		  <li>
+		</ul>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
@@ -442,6 +429,9 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
+		  All copy editing has been done. You may
+		  now <a href="content_status_modify?workflow_action=publish-honorable-mention">publish
+		  this as an Honorable Mention</a>
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
@@ -474,8 +464,7 @@
 	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
-		<p>
-		</p>
+		<p></p>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
@@ -494,39 +483,6 @@
 	      </div>
 	    </div>
 
-	    <div tal:condition="python: workflow_state == 'accepted-for-publication'">
-	      <div tal:condition="is_owner">
-		<b>You are the Owner of this submission.</b> 
-		<p>
-		</p>
-		<p>
-		  If you don't see an Edit button you
-		  may <a href="contact-info">contact us</a> if anything in
-		  your submission needs to be changed.
-		</p>
-	      </div>
-	      <div tal:condition="is_managing_editor">
-		<b>You are the Managing Editor.</b> 
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_advisor">
-		<b>You are a Faculty Advisor for this submission.</b>
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_submissionreviewer">
-		<b>You are a Reviewer for this submission.</b>
-		<p>
-		</p>
-	      </div>
-	      <div tal:condition="is_selection_committee_member">
-		<b>You are a member of the selection committee.</b> 
-		<p>
-		</p>
-	      </div>
-	    </div>
-	    
 	    <div tal:condition="python: workflow_state == 'copyediting-for-published'">
 	      <div tal:condition="is_owner">
 		<b>You are the Owner of this submission.</b> 
@@ -540,8 +496,15 @@
 	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
-		<p>
-		</p>
+		<p>Please do the final copy editing prior to publication:</p>
+		<ul>
+		  <li>Download the file.</li>
+		  <li>Make any final edits</li>
+		  <li>Save the file under a new name</li>
+		  <li>Upload the new file here</li>
+		  <li>Then <a href="content_status_modify?workflow_action=finish-copyediting-for-published">mark it as ready for publication</a></li>
+		  <li>
+		</ul>
 	      </div>
 	      <div tal:condition="is_advisor">
 		<b>You are a Faculty Advisor for this submission.</b>
@@ -574,6 +537,9 @@
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
+		  All copy editing has been done. You may
+		  now <a href="content_status_modify?workflow_action=publish">publish
+		  this</a>
 		</p>
 	      </div>
 	      <div tal:condition="is_advisor">
@@ -630,6 +596,7 @@
 	      <div tal:condition="is_owner">
 		<b>You are the Owner of this submission.</b> 
 		<p>
+		  You have withdrawn this submission.
 		</p>
 		<p>
 		  If you don't see an Edit button you
@@ -663,6 +630,7 @@
 	      <div tal:condition="is_owner">
 		<b>You are the Owner of this submission.</b> 
 		<p>
+		  This submission has been reviewed by the Selection Committee but will not be accepted for publication.
 		</p>
 		<p>
 		  If you don't see an Edit button you
