@@ -77,8 +77,8 @@
  </state>
  <state state_id="being-reviewed" title="Being Reviewed">
   <description>Waiting to be reviewed, not editable by the owner
-  (student). Reviewers are able to see only the submissions they’ve
-  been assigned.</description>
+(student). Reviewers are able to see only the submissions they’ve
+been assigned.</description>
   <exit-transition transition_id="deny"/>
   <exit-transition transition_id="remove-reviewer-info"/>
   <exit-transition transition_id="member-withdraws-submission"/>
@@ -114,8 +114,7 @@
   </permission-map>
  </state>
  <state state_id="removing-id-info" title="Removing Reviewer Info">
-  <description>The Managing Editor is removing identifying information about the reviewers.
-  </description>
+  <description>The Managing Editor is removing identifying information about the reviewers.</description>
   <exit-transition transition_id="send-back-to-student"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -154,9 +153,8 @@
  </state>
  <state state_id="being-revised-by-student" title="Being Revised By Student">
   <description>Waiting to be revised by student, who can only download
-  and upload new copies of the document (the rest of the submission is
-  not editable.
-  </description>
+and upload new copies of the document (the rest of the submission is
+not editable.</description>
   <exit-transition transition_id="remove-identifying-info"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -528,7 +526,7 @@
    <group-role>Reader</group-role>
   </group-map>
  </state>
- <transition transition_id="accept-for-publication" title="Accept For Publication" new_state="accepted-for-publication" trigger="USER" before_script="" after_script="">
+ <transition transition_id="accept-for-publication" title="Accept For Publication" new_state="copyediting-for-published" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=accept-for-publication" category="workflow" icon="">Accept For Publication</action>
   <guard>
    <guard-role>Site Administrator</guard-role>
@@ -579,7 +577,7 @@
    <guard-role>Site Administrator</guard-role>
   </guard>
  </transition>
- <transition transition_id="include-as-honorable-mention" title="Include as honorable mention" new_state="honorable-mention" trigger="USER" before_script="" after_script="">
+ <transition transition_id="include-as-honorable-mention" title="Include as honorable mention" new_state="copyediting-for-honorable-mention" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=include-as-honorable-mention" category="workflow" icon="">Include as honorable mention</action>
   <guard>
    <guard-role>Site Administrator</guard-role>
