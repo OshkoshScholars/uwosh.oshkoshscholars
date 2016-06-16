@@ -616,6 +616,7 @@ ME + FA will be doing this</description>
   <guard>
    <guard-role>Site Administrator</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Selection Committee Member</guard-role>
   </guard>
  </transition>
  <transition transition_id="assign-to-reviewer" title="Assign to Reviewer" new_state="being-reviewed" trigger="USER" before_script="" after_script="">
@@ -644,6 +645,7 @@ ME + FA will be doing this</description>
   <guard>
    <guard-role>Site Administrator</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Selection Committee Member</guard-role>
   </guard>
  </transition>
  <transition transition_id="finish-copyediting-for-honorable-mention" title="Finish Copyediting For Honorable Mention" new_state="copyediting-for-honorable-mention-finished" trigger="USER" before_script="" after_script="">
@@ -665,6 +667,7 @@ ME + FA will be doing this</description>
   <guard>
    <guard-role>Site Administrator</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Selection Committee Member</guard-role>
   </guard>
  </transition>
  <transition transition_id="member-withdraws-submission" title="Withdraw submission" new_state="withdrawn" trigger="USER" before_script="" after_script="">
