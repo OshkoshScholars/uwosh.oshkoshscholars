@@ -91,6 +91,16 @@
 	      <div tal:condition="is_submissionreviewer">
 		<b>You are a Reviewer for this submission.</b>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	      <p>
 	      </p>
 	    </div>
@@ -141,6 +151,16 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'being-reviewed'">
@@ -176,6 +196,16 @@
 		  worked correctly.
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 	    
 	    <div tal:condition="python: workflow_state == 'accepted-for-publication'">
@@ -203,6 +233,16 @@
 		<b>You are a Reviewer for this submission.</b>
 		<p>
 		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -242,6 +282,16 @@
 		  
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 	    
 	    <div tal:condition="python: workflow_state == 'copyediting-for-honorable-mention'">
@@ -269,6 +319,16 @@
 		<b>You are a Reviewer for this submission.</b>
 		<p>
 		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -298,6 +358,16 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'copyediting-for-publication-finished'">
@@ -325,6 +395,16 @@
 		<b>You are a Reviewer for this submission.</b>
 		<p>
 		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -354,6 +434,16 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'denied'">
@@ -381,6 +471,16 @@
 		<b>You are a Reviewer for this submission.</b>
 		<p>
 		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -410,6 +510,16 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'honorable-mention-published'">
@@ -437,6 +547,16 @@
 		<b>You are a Reviewer for this submission.</b>
 		<p>
 		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 
@@ -473,6 +593,16 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'published'">
@@ -501,14 +631,54 @@
 		<p>
 		</p>
 	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div tal:condition="python: workflow_state == 'removing-id-info'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
 	      <div tal:condition="is_managing_editor">
 		<b>You are the Managing Editor.</b> 
 		<p>
 		  You must review the submission and remove any information from it that identifies the reviewer. You do this by downloading the file, editing it, then re-uploading it to the submission. Then <a href="content_status_modify?workflow_action=send-back-to-student">send the submission back to the student for revision</a>.
 		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
 	      </div>
 	    </div>
 	    
@@ -552,6 +722,41 @@
 	    </div>
 	    
 	    <div tal:condition="python: workflow_state == 'withdrawn'">
+	      <div tal:condition="is_owner">
+		<b>You are the Owner of this submission.</b> 
+		<p>
+		</p>
+		<p>
+		  If you don't see an Edit button you
+		  may <a href="contact-info">contact us</a> if anything in
+		  your submission needs to be changed.
+		</p>
+	      </div>
+	      <div tal:condition="is_managing_editor">
+		<b>You are the Managing Editor.</b> 
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_advisor">
+		<b>You are a Faculty Advisor for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_submissionreviewer">
+		<b>You are a Reviewer for this submission.</b>
+		<p>
+		</p>
+	      </div>
+	      <div tal:condition="is_selection_committee_member">
+		<b>You are a member of the selection committee.</b> 
+		<p>
+		</p>
+		<!-- <ul> -->
+		<!--   <li><a href="content_status_modify?workflow_action=accept-for-publication">accept it for publication</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=deny">deny it</a></li> -->
+		<!--   <li><a href="content_status_modify?workflow_action=include-as-honorable-mention">include it as honorable mention</a></li> -->
+		<!-- </ul> -->
+	      </div>
 	    </div>
 
 	    <div class="generic_info">
