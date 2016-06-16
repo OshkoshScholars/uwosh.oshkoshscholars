@@ -233,9 +233,9 @@
  </state>
  <state state_id="selection-committee" title="Review by Selection Committee">
   <description>The Selection Committee is reviewing this submission.</description>
-  <exit-transition transition_id="accept-for-publication"/>
+  <exit-transition transition_id="copyedit-for-honorable-mention"/>
+  <exit-transition transition_id="copyedit-for-published"/>
   <exit-transition transition_id="deny"/>
-  <exit-transition transition_id="include-as-honorable-mention"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -274,45 +274,8 @@
    <group-role>Reader</group-role>
   </group-map>
  </state>
- <state state_id="honorable-mention" title="Honorable Mention">
-  <description>The submission has been selected to appear as an Honorable Mention. Congratulations!</description>
-  <exit-transition transition_id="deny"/>
-  <exit-transition transition_id="copyedit-for-honorable-mention"/>
-  <exit-transition transition_id="member-withdraws-submission"/>
-  <permission-map name="Access contents information" acquired="False">
-   <permission-role>Contributor</permission-role>
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Review portal content" acquired="True">
-  </permission-map>
-  <permission-map name="View" acquired="False">
-   <permission-role>Contributor</permission-role>
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <group-map name="EditorialBoard">
-   <group-role>Reader</group-role>
-  </group-map>
- </state>
  <state state_id="copyediting-for-honorable-mention" title="Copyediting For Honorable Mention">
-  <description>The submission is being edited and will appear as an Honorable Mention.</description>
+  <description>Congratulations! This submission will appear as an Honorable Mention and is being prepared for publication.</description>
   <exit-transition transition_id="finish-copyediting-for-honorable-mention"/>
   <exit-transition transition_id="member-withdraws-submission"/>
   <permission-map name="Access contents information" acquired="False">
@@ -405,42 +368,6 @@
   </permission-map>
   <group-map name="EditorialBoard">
    <group-role>Editor</group-role>
-   <group-role>Reader</group-role>
-  </group-map>
- </state>
- <state state_id="accepted-for-publication" title="Accepted For Publication">
-  <description>The submission has been accepted for publication. Congratulations!</description>
-  <exit-transition transition_id="copyedit-for-published"/>
-  <exit-transition transition_id="member-withdraws-submission"/>
-  <permission-map name="Access contents information" acquired="False">
-   <permission-role>Contributor</permission-role>
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Review portal content" acquired="True">
-  </permission-map>
-  <permission-map name="View" acquired="False">
-   <permission-role>Contributor</permission-role>
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <group-map name="EditorialBoard">
    <group-role>Reader</group-role>
   </group-map>
  </state>
