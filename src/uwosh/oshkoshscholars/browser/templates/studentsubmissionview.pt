@@ -197,8 +197,18 @@
 		  <li>Download the <a href="@@download/submission_file">submitted
 		      file</a></li>
 		  <li>Save the file under a new name (do NOT include your name or other identifying information about yourself in the file name or in the file itself).</li>
-		  <li>Review the document, making comments in the document (XXX need more specific instructions XXX).</li>
-		  <li>Upload your file here</li>
+		  <li>Set up your word processor so that comments and edits will be anonymous (these instructions are for MSWord, but Open/LibreOffice is similar):
+		    <ol>
+		      <li>Open the "Preferences..." window (how you access this depends on which version of the software you have).</li>
+		      <li>Select "User Information".</li>
+		      <li>Remove all identifying information from the fields and save the changes.</li>
+		      <li>You may now open the document you are reviewing.</li>
+		    </ol>
+		  </li>
+		  <li>To review the document, make sure "Track Changes" is on (usually the menu "Tools>Track Changes>Highlight Changes..." to set this on).
+		  You can then make edits.  <span style="font-weight:bold;">However, for student learning it is preferable to use comments</span> by selecting the text and adding comments using 
+		  the menu "Insert>New Comment". You can then type your comment in the box provided.</li>
+		  <li>When done save your file and upload it here</li>
 		  <li>Then <a href="content_status_modify?workflow_action=remove-reviewer-info">transition
 		    it to the next state</a>
 		</ul>
